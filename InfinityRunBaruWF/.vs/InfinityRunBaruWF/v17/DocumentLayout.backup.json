@@ -1,0 +1,152 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|InfinityRunBaruWF||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|d:\\tugas\\pbo\\fp\\infinityrunbaruwf\\assets\\path.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|solutionrelative:assets\\path.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\coin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|solutionrelative:coin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\obstacle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|solutionrelative:obstacle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|d:\\tugas\\pbo\\fp\\infinityrunbaruwf\\gameform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|solutionrelative:gameform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|solutionrelative:character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F653BFB0-7508-4D13-AF06-AC87944EE478}|InfinityRunBaruWF.csproj|d:\\tugas\\pbo\\fp\\infinityrunbaruwf\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Coin.cs",
+              "DocumentMoniker": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\Coin.cs",
+              "RelativeDocumentMoniker": "Coin.cs",
+              "ToolTip": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\Coin.cs",
+              "RelativeToolTip": "Coin.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCEAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T10:34:48.279Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InfinityRunBaruWF",
+              "DocumentMoniker": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\InfinityRunBaruWF.csproj",
+              "RelativeDocumentMoniker": "InfinityRunBaruWF.csproj",
+              "ToolTip": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\InfinityRunBaruWF.csproj*",
+              "RelativeToolTip": "InfinityRunBaruWF.csproj*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-15T14:39:06.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "path.png -  [English (United States)] - PNG [418x597, 32 bit, PNG]",
+              "DocumentMoniker": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\assets\\path.png",
+              "RelativeDocumentMoniker": "assets\\path.png",
+              "ToolTip": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\assets\\path.png -  [English (United States)] - PNG [418x597, 32 bit, PNG]",
+              "RelativeToolTip": "assets\\path.png -  [English (United States)] - PNG [418x597, 32 bit, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2024-12-15T14:39:02.032Z",
+              "EditorCaption": " -  [English (United States)] - PNG [418x597, 32 bit, PNG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Obstacle.cs",
+              "DocumentMoniker": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\Obstacle.cs",
+              "RelativeDocumentMoniker": "Obstacle.cs",
+              "ToolTip": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\Obstacle.cs",
+              "RelativeToolTip": "Obstacle.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCEAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T10:41:08.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T10:02:19.574Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Character.cs",
+              "DocumentMoniker": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\Character.cs",
+              "RelativeDocumentMoniker": "Character.cs",
+              "ToolTip": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\Character.cs",
+              "RelativeToolTip": "Character.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T10:19:17.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameForm.cs",
+              "DocumentMoniker": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\GameForm.cs",
+              "RelativeDocumentMoniker": "GameForm.cs",
+              "ToolTip": "D:\\tugas\\pbo\\FP\\InfinityRunBaruWF\\GameForm.cs",
+              "RelativeToolTip": "GameForm.cs",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAUwJQAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T10:02:51.125Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

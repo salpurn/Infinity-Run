@@ -1,0 +1,10 @@
+D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\InfinityRunBaruWF.csproj.AssemblyReference.cache
+D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\InfinityRunBaruWF.csproj.GenerateResource.cache
+D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\InfinityRunBaruWF.csproj.CoreCompileInputs.cache
+D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\InfinityRunBaruWF.exe.config
+D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\InfinityRunBaruWF.exe
+D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\InfinityRunBaruWF.pdb
+D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\InfinityRunBaruWF.exe
+D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\InfinityRunBaruWF.pdb
+D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\InfinityRunBaruWF.Properties.assets.resources
+D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\assets\coin.png

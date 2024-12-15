@@ -18,7 +18,7 @@ namespace InfinityRun
             _coinPictureBox = new PictureBox
             {
                 Size = new Size(20, 20),
-                Location = new Point(_random.Next(0, gameSize.Width - 20), -20),
+                Location = new Point((gameSize.Width - 20) / 2, -20),
                 BackgroundImage = Image.FromFile(@"assets\coin.png"),
                 BackgroundImageLayout = ImageLayout.Stretch
             };

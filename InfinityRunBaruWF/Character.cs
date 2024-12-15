@@ -31,12 +31,43 @@ namespace InfinityRun
             GameForm.Controls.Add(_CharPanel);
         }
 
-        public void Move(KeyEventArgs e, Form GameForm)
+        public void Move(KeyEventArgs e, GameForm gameForm)
         {
-            if (e.KeyCode == Keys.Left && _CharPanel.Left > 0)
-                _CharPanel.Left -= _CharSpeed;
-            else if (e.KeyCode == Keys.Right && _CharPanel.Left < GameForm.ClientSize.Width - _CharPanel.Width)
-                _CharPanel.Left += _CharSpeed;
+            // Prevent adding new instances; only move the existing one
+            if (e.KeyCode == Keys.Up)
+            {
+                if (this.GetPanel().Top > 0)
+                {
+                    this.GetPanel().Top -= _CharSpeed;
+                }
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                if (this.GetPanel().Left > 0)
+                {
+                    this.GetPanel().Left -= _CharSpeed;
+                }
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                if (this.GetPanel().Left < gameForm.ClientSize.Width - this.GetPanel().Width)
+                {
+                    this.GetPanel().Left += _CharSpeed;
+                }
+            }
+
+            // Ensure character stays within the game area
+            this.GetPanel().Left = Math.Max(0, Math.Min(this.GetPanel().Left, gameForm.ClientSize.Width - this.GetPanel().Width));
+            this.GetPanel().Top = Math.Max(0, Math.Min(this.GetPanel().Top, gameForm.ClientSize.Height - this.GetPanel().Height));
+        }
+
+        public void CenterCharacter(Form GameForm)
+        {
+            int centerX = (GameForm.ClientSize.Width - _CharPanel.Width) / 2;
+
+            _CharPanel.Left = centerX;
+
+            _CharPanel.Top = GameForm.ClientSize.Height - _CharPanel.Height - 50; // Slightly above the bottom
         }
 
         public Panel GetPanel()

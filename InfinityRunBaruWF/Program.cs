@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using InfinityRun;
+using Newtonsoft.Json;
 
 namespace InfinityRun
 {
@@ -8,12 +10,15 @@ namespace InfinityRun
         [STAThread]
         static void Main()
         {
-            // Set the application to use Windows Forms.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Run the main game form.
-            Application.Run(new GameForm());
+            string leaderboardFilePath = "leaderboard.json";
+            var leaderboard = new Leaderboard(leaderboardFilePath);
+
+            GameForm gameForm = new GameForm(leaderboard);
+
+            Application.Run(gameForm);
         }
     }
 }

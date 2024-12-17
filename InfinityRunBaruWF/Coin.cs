@@ -15,12 +15,22 @@ namespace InfinityRun
             _random = new Random();
             _baseSpeed = 3;
 
+            // Calculate the center of the game window and define spawn positions
+            int centerX = (gameSize.Width - 20) / 2; // Adjust for coin width (20px)
+            int[] spawnPositions = new int[] {
+                centerX - 240, // 240 pixels to the left of center
+                centerX,       // Center
+                centerX + 240  // 240 pixels to the right of center
+            };
+
+            // Initialize the coin's PictureBox with proper settings
             _coinPictureBox = new PictureBox
             {
-                Size = new Size(20, 20),
-                Location = new Point((gameSize.Width - 20) / 2, -20),
+                Size = new Size(20, 20), // Coin size
+                Location = new Point(spawnPositions[_random.Next(0, spawnPositions.Length)], -20), // Random spawn position
                 BackgroundImage = Image.FromFile(@"assets\coin.png"),
-                BackgroundImageLayout = ImageLayout.Stretch
+                BackgroundImageLayout = ImageLayout.Stretch,
+                BackColor = Color.Transparent // Make the background transparent
             };
         }
 

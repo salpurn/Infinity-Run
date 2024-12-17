@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace InfinityRun
@@ -9,116 +11,69 @@ namespace InfinityRun
     public partial class GameForm : Form
     {
         private Timer _gameTimer;
-        /*private PictureBox _background1;
-        private PictureBox _background2;
-        private int _baseBackgroundSpeed = 3;
-        private int _backgroundSpeed;*/
         private Random _random;
         private Character _character;
         private List<Coin> _coins;
         private List<Obstacle> _obstacles;
+        private ScrollingBackground _scrollingBackground;
         private int _coinSpawnCounter;
         private int _obstacleSpawnCounter;
         private int _score;
         private Leaderboard _leaderboard;
+        private bool _isGameOver;
+        private SoundPlayer _player;
 
-        public int Score {
+        public int Score
+        {
             get => _score; private set => _score = value;
         }
 
         public GameForm(Leaderboard leaderboard)
         {
             InitializeComponents();
+
             _leaderboard = leaderboard;
+            _scrollingBackground = new ScrollingBackground(@"assets/Canvas.png", 2, this.ClientSize);
         }
 
         private void InitializeComponents()
         {
             this.ClientSize = new Size(800, 600);
             this.Text = "Infinity Run";
-            this.DoubleBuffered = true; // Prevent flickering
-            this.BackColor = Color.LightBlue;
-
-            // Initialize background logic
-            /*_background1 = new PictureBox
-            {
-                Size = new Size(800, 600),
-                Location = new Point(0, 0),
-                Image = Image.FromFile(@"assets\path.png"),
-                SizeMode = PictureBoxSizeMode.StretchImage
-            };
-
-            _background2 = new PictureBox
-            {
-                Size = new Size(800, 600),
-                Location = new Point(0, -600), // Positioned directly above the first background
-                Image = Image.FromFile(@"assets\path.png"),
-                SizeMode = PictureBoxSizeMode.StretchImage
-            };
-
-            this.Controls.Add(_background1);
-            this.Controls.Add(_background2);*/
-
+            this.DoubleBuffered = true;
             _random = new Random();
             _coins = new List<Coin>();
             _obstacles = new List<Obstacle>();
             _character = new Character(this);
             Score = 0;
+            _isGameOver = false;
 
             _gameTimer = new Timer
             {
-                Interval = 8 // Roughly 120 FPS
+                Interval = 8
             };
             _gameTimer.Tick += GameTick;
             _gameTimer.Start();
 
-            this.KeyDown += OnKeyDown;
+            this.KeyDown += (s, e) => _character.OnKeyDown(e);
 
             this.Resize += OnResize;
+
+            _character.GameOverEvent += GameOver;
+
+            _player = new SoundPlayer();
         }
 
         private void OnResize(object sender, EventArgs e)
         {
-            /*// Adjust the background size and position when the form is resized
-            int centerX = (this.ClientSize.Width - _background1.Width) / 2;
-            int centerY = (this.ClientSize.Height - _background1.Height) / 2;
-
-            // Position the background images at the center of the form
-            _background1.Location = new Point(centerX, centerY);
-            _background2.Location = new Point(centerX, centerY - _background1.Height); // Position second background above the first*/
-
             _character.CenterCharacter(this);
-
-        }
-
-        /*private void UpdateBackgroundSpeed()
-        {
-            double speedMultiplier = 1 + Math.Log10(1 + _score / 15.0); // Gradual increase of speed every 15 points
-            _backgroundSpeed = (int)(_baseBackgroundSpeed * speedMultiplier);
-        }
-        private void ScrollBackground()
-        {
-            // Move the backgrounds downward with updated speed
-            _background1.Top += _backgroundSpeed;
-            _background2.Top += _backgroundSpeed;
-
-            // Reset positions when they move out of view
-            if (_background1.Top >= this.ClientSize.Height)
-                _background1.Top = _background2.Top - _background1.Height;
-
-            if (_background2.Top >= this.ClientSize.Height)
-                _background2.Top = _background1.Top - _background2.Height;
-        }*/
-
-        private void OnKeyDown(object sender, KeyEventArgs e)
-        {
-            _character.Move(e, this);
         }
 
         private void GameTick(object sender, EventArgs e)
         {
-            /*UpdateBackgroundSpeed();
-            ScrollBackground();*/
+            if (_isGameOver) return;
+
+            _scrollingBackground.Update();
 
             // Spawn coins periodically
             _coinSpawnCounter++;
@@ -151,8 +106,9 @@ namespace InfinityRun
                 }
                 else if (_coins[i].GetPictureBox().Bounds.IntersectsWith(_character.GetPanel().Bounds))
                 {
-                    // Coin collected
-                    this.Controls.Remove(_coins[i].GetPictureBox());
+                    // Coin collected, play sound
+/*                    PlaySound("InfinityRun.assets.hitcoin.wav");
+*/                    this.Controls.Remove(_coins[i].GetPictureBox());
                     _coins.RemoveAt(i);
                     Score += 5;
                 }
@@ -169,37 +125,64 @@ namespace InfinityRun
                 }
                 else if (_obstacles[i].GetPictureBox().Bounds.IntersectsWith(_character.GetPanel().Bounds))
                 {
-                    // Obstacle hit: End the game immediately
-                    GameOver();
-                    return; // Exit GameTick after game over
+                    // Obstacle hit, play sound and game over
+/*                    PlaySound("InfinityRun.assets.hitobstacle.wav");
+*/                    GameOver("");
+                    return;
                 }
             }
 
             this.Text = $"Infinity Run - Current Score: {Score}";
+            this.Invalidate(); // Force the form to repaint
         }
 
-        private void ShowLeaderboard()
+        private void PlaySound(string resourceName)
         {
-            var scores = _leaderboard.LoadScores();
-            string leaderboardText = string.Join("\n", scores.OrderByDescending(s => s).Take(10));
-            //MessageBox.Show($"Top Scores:\n{leaderboardText}", "Leaderboard", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            MessageBox.Show("Highest Score: " + _leaderboard.GetHighestScore());
+            try
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                var stream = assembly.GetManifestResourceStream(resourceName);
+                if (stream != null)
+                {
+                    _player.Stream = stream;
+                    _player.Play();
+                }
+                else
+                {
+                    Console.WriteLine("Error: Sound resource not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error playing sound: " + ex.Message);
+            }
         }
 
-
-        private void GameOver()
+        protected override void OnPaint(PaintEventArgs e)
         {
+            base.OnPaint(e);
+
+            _scrollingBackground.Draw(e.Graphics, this.ClientSize);
+        }
+
+        private void GameOver(string message)
+        {
+            if (_isGameOver) return;
+
+            _isGameOver = true;
             _gameTimer.Stop();
 
             _leaderboard.AddScore(Score);
 
             int highestScore = _leaderboard.GetHighestScore();
-            string message = Score == highestScore
-                ? $"Game Over! Highest score yet! You made it!\nYour Score: {Score}"
-                : $"Game Over! Better luck next time!\nYour Score: {Score}, Highest Score: {highestScore}";
+            string finalMessage = string.IsNullOrEmpty(message)
+                ? (Score == highestScore
+                    ? $"Game Over! Highest score yet! You've made it!\nYour Score: {Score}"
+                    : $"Game Over! Better luck next time!\nYour Score: {Score}, Highest Score: {highestScore}")
+                : message;
 
-            MessageBox.Show(message, "Infinity Run", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+            MessageBox.Show(finalMessage, "Infinity Run", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             Application.Exit();
         }
     }

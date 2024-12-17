@@ -10,3 +10,10 @@ D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\InfinityRunBaruWF.Properties.assets.
 D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\assets\coin.png
 D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\Newtonsoft.Json.dll
 D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\Infinity.BFF9B226.Up2Date
+D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\EntityFramework.SqlServer.dll
+D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\EntityFramework.dll
+D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\tugas\pbo\FP\InfinityRunBaruWF\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\Interop.MediaPlayer.dll
+D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\Interop.WMPLib.dll
+D:\tugas\pbo\FP\InfinityRunBaruWF\obj\Debug\InfinityRunBaruWF.csproj.ResolveComReference.cache

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using InfinityRun;
 using Newtonsoft.Json;
@@ -13,11 +14,17 @@ namespace InfinityRun
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            string leaderboardFilePath = "leaderboard.json";
+            // Ensure only one instance of the application
+            if (Application.OpenForms.OfType<GameForm>().Any())
+            {
+                MessageBox.Show("The game is already running.", "Infinity Run", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string leaderboardFilePath = "newleaderboard.json";
             var leaderboard = new Leaderboard(leaderboardFilePath);
 
             GameForm gameForm = new GameForm(leaderboard);
-
             Application.Run(gameForm);
         }
     }

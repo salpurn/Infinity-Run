@@ -1,78 +1,129 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Media;
 
 namespace InfinityRun
 {
     public class Character
     {
-        private Panel _CharPanel;
-        private int _CharSpeed = 17;
+        private Panel _characterPanel;
+        private Timer _jumpTimer;
+        private int _jumpHeight = 120;
+        private bool _isJumping = false;
+        private double _jumpArcProgress = 0; // Progress along the jump arc (0 to 1)
+        private const int Margin = 50; // Margin from left and right wall for Game Over
+        private const double JumpArcStep = 0.05; // Progress increment for the arc
+        private int _jumpStartX; // Starting X position for the jump
+        private double _moveDistance = 240;
+        private Keys _currentKey;
+        public event Action<string> GameOverEvent;
+        private SoundPlayer _jumpSoundPlayer;
 
-        public Character(Form GameForm)
+        public Character(GameForm gameForm)
         {
-            _CharPanel = new Panel
+            int width = 70;
+            int height = 113;
+
+            _characterPanel = new Panel
             {
-                Width = 50,
-                Height = 103,
-                Location = new Point(375, 500) // Starting position
+                Width = width,
+                Height = height,
+                Location = new Point(gameForm.ClientSize.Width / 2 - width / 2, gameForm.ClientSize.Height - height - 50), // Position at the bottom center
+                BackColor = Color.Transparent
             };
 
             try
             {
-                _CharPanel.BackgroundImage = Image.FromFile(@"assets/character.png");
-                _CharPanel.BackgroundImageLayout = ImageLayout.Stretch;
+                _characterPanel.BackgroundImage = Image.FromFile(@"assets/character.png");
+                _characterPanel.BackgroundImageLayout = ImageLayout.Stretch;
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error loading character image: " + e.Message);
             }
 
-            GameForm.Controls.Add(_CharPanel);
+            gameForm.Controls.Add(_characterPanel);
+
+            _jumpTimer = new Timer { Interval = 30 }; // Jump animation speed
+            _jumpTimer.Tick += (s, e) => PerformJump(gameForm);
+
+            // Initialize the SoundPlayer for the jump sound
+            _jumpSoundPlayer = new SoundPlayer(@"assets/jump.wav");
         }
 
-        public void Move(KeyEventArgs e, GameForm gameForm)
+        public void OnKeyDown(KeyEventArgs e)
         {
-            // Prevent adding new instances; only move the existing one
-            if (e.KeyCode == Keys.Up)
+            if (!_isJumping)
             {
-                if (this.GetPanel().Top > 0)
+                if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)
                 {
-                    this.GetPanel().Top -= _CharSpeed;
-                }
-            }
-            else if (e.KeyCode == Keys.Left)
-            {
-                if (this.GetPanel().Left > 0)
-                {
-                    this.GetPanel().Left -= _CharSpeed;
-                }
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                if (this.GetPanel().Left < gameForm.ClientSize.Width - this.GetPanel().Width)
-                {
-                    this.GetPanel().Left += _CharSpeed;
-                }
-            }
+                    _jumpStartX = _characterPanel.Left; // Record starting X position
+                    _currentKey = e.KeyCode;
+                    _isJumping = true;
+                    _jumpTimer.Start();
 
-            // Ensure character stays within the game area
-            this.GetPanel().Left = Math.Max(0, Math.Min(this.GetPanel().Left, gameForm.ClientSize.Width - this.GetPanel().Width));
-            this.GetPanel().Top = Math.Max(0, Math.Min(this.GetPanel().Top, gameForm.ClientSize.Height - this.GetPanel().Height));
+                    PlayJumpSound();
+                }
+            }
         }
 
-        public void CenterCharacter(Form GameForm)
+        private void PerformJump(GameForm gameForm)
         {
-            int centerX = (GameForm.ClientSize.Width - _CharPanel.Width) / 2;
+            if (_isJumping)
+            {
+                _jumpArcProgress += 0.05; // Progress along the jump arc (from 0 to 1)
 
-            _CharPanel.Left = centerX;
+                // Calculate vertical position (arc effect)
+                int baseY = gameForm.ClientSize.Height - _characterPanel.Height - 50;
+                _characterPanel.Top = baseY - (int)(_jumpHeight * Math.Sin(_jumpArcProgress * Math.PI)); // Sinusoidal jump arc
 
-            _CharPanel.Top = GameForm.ClientSize.Height - _CharPanel.Height - 50; // Slightly above the bottom
+                if (_currentKey == Keys.Right)
+                {
+                    _characterPanel.Left = _jumpStartX + (int)(_moveDistance * _jumpArcProgress);
+                }
+                else if (_currentKey == Keys.Left)
+                {
+                    _characterPanel.Left = _jumpStartX - (int)(_moveDistance * _jumpArcProgress);
+                }
+
+                if (_jumpArcProgress >= 1)
+                {
+                    _isJumping = false;
+                    _jumpTimer.Stop();
+                    _jumpArcProgress = 0; // Reset progress for the next jump
+                }
+
+                // Check for Game Over conditions (out of path)
+                if (_characterPanel.Left <= Margin || _characterPanel.Left >= _characterPanel.Parent.ClientSize.Width - Margin - _characterPanel.Width)
+                {
+                    GameOverEvent?.Invoke("Game over! You're exceeding the desired path!");
+                }
+            }
+        }
+
+        public void CenterCharacter(GameForm gameForm)
+        {
+            int centerX = (gameForm.ClientSize.Width - _characterPanel.Width) / 2;
+            _characterPanel.Left = centerX;
+            _characterPanel.Top = gameForm.ClientSize.Height - _characterPanel.Height - 50; // Position slightly above the bottom of the form
         }
 
         public Panel GetPanel()
         {
-            return _CharPanel;
+            return _characterPanel;
+        }
+
+        private void PlayJumpSound()
+        {
+            try
+            {
+                _jumpSoundPlayer.Play();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error playing jump sound: " + ex.Message);
+            }
         }
     }
 }
